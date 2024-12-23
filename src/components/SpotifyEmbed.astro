@@ -1,0 +1,240 @@
+---
+const randSong = Math.floor(Math.random() * 24);
+const startDate = new Date("2024-12-23");
+const currDate = new Date();
+currDate.setHours(0, 0, 0, 0);
+
+const differenceInTime = currDate.getTime() - startDate.getTime();
+const differenceInDays = Math.floor(differenceInTime / (1000 * 60 * 60 * 24));
+
+console.log(differenceInDays);
+
+const spotifyLinks = [
+  {
+    title: "god's chariots",
+    artist: "Oklou",
+    description: "",
+    link: "https://open.spotify.com/embed/track/0ffiD4SYlHEifVwzBdPqd7?utm_source=generator",
+  },
+  {
+    title: "30 for 30 (With Kendrick Lamar)",
+    artist: "SZA",
+    description: "hii",
+    link: "https://open.spotify.com/embed/track/3aSWXU6owkZeVhh94XxEWO?utm_source=generator",
+  },
+  {
+    title: "DENIAL IS A RIVER",
+    artist: "Doechii",
+    description: "",
+    link: "https://open.spotify.com/embed/track/1eTaznNW4Xxtx9za2SMTXB?utm_source=generator",
+  },
+  {
+    title: "do ya?",
+    artist: "ericdoa",
+    description: "",
+    link: "https://open.spotify.com/embed/track/5Id2D8UU0jK2i56NBgzsdK?utm_source=generator",
+  },
+  {
+    title: "luther (with sza)",
+    artist: "Kendrick Lamar",
+    description: "",
+    link: "https://open.spotify.com/embed/track/45J4avUb9Ni0bnETYaYFVJ?utm_source=generator",
+  },
+  {
+    title: "I Want",
+    artist: "Mk.gee",
+    description: "",
+    link: "https://open.spotify.com/embed/track/141hcjVM8lNPxi4wjNLgdX?utm_source=generator",
+  },
+  {
+    title: "October",
+    artist: "tai hirose",
+    description: "",
+    link: "https://open.spotify.com/embed/track/5missr5jffaYAOurySDkD2?utm_source=generator",
+  },
+  {
+    title: "Angela Sunrise",
+    artist: "Milieu",
+    description: "",
+    link: "https://open.spotify.com/embed/track/0Dh90zE7ome0uWKt4lLhFH?utm_source=generator",
+  },
+  {
+    title: "Macropsis",
+    artist: "Milieu",
+    description: "",
+    link: "https://open.spotify.com/embed/track/548etDVO8qEoOzarJ6jWnC?utm_source=generator",
+  },
+  {
+    title: "Darling, I (feat. Teezo Touchdown)",
+    artist: "Tyler, The Creator",
+    description: "",
+    link: "https://open.spotify.com/embed/track/0VaeksJaXy5R1nvcTMh3Xk?utm_source=generator",
+  },
+  {
+    title: "dragonfly",
+    artist: "ivri",
+    description: "",
+    link: "https://open.spotify.com/embed/track/4IBL2eWL1xA65FzhCISP81?utm_source=generator",
+  },
+  {
+    title: "關於小熊",
+    artist: "Soft Lipa",
+    description: "",
+    link: "https://open.spotify.com/embed/track/13tJ9Mkj7cjXxrTjOh0LAN?utm_source=generator",
+  },
+  {
+    title: "Sandman",
+    artist: "A$AP Rocky",
+    description: "",
+    link: "https://open.spotify.com/embed/track/0qkA0NU7cDKWkFXNGRcNaB?utm_source=generator",
+  },
+  {
+    title: "catalogue",
+    artist: "julie",
+    description: "",
+    link: "https://open.spotify.com/embed/track/5VizV1ual1LIaf30Fx2yBD?utm_source=generator",
+  },
+  {
+    title: "無常",
+    artist: "Faye Wong",
+    description: "",
+    link: "https://open.spotify.com/embed/track/0jtSFAf3BJP0QX0VJU1Luo?utm_source=generator",
+  },
+  {
+    title: "Samurai",
+    artist: "Lupe Fiasco",
+    description: "",
+    link: "https://open.spotify.com/embed/track/00LGJRRqN4AtSpHrvjIyiJ?utm_source=generator",
+  },
+  {
+    title: "Image",
+    artist: "Magdalena Bay",
+    description: "",
+    link: "https://open.spotify.com/embed/track/0QW0KPBXXv67haGjbtkRRB?utm_source=generator",
+  },
+  {
+    title: "Myth",
+    artist: "Beach House",
+    description: "",
+    link: "https://open.spotify.com/embed/track/2NfxtzCIrpCmJX5Z2KMdD5?utm_source=generator",
+  },
+  {
+    title: "Ranger",
+    artist: "dottie",
+    description: "",
+    link: "https://open.spotify.com/embed/track/0WcIQz3lIyz5tcgXKJs1vH?utm_source=generator",
+  },
+  {
+    title: "press play",
+    artist: "adore, vowl.",
+    description: "",
+    link: "https://open.spotify.com/embed/track/6vZCWKiXwxCG0buNfWeQD8?utm_source=generator",
+  },
+  {
+    title: "In The Night (feat. Jorja Smith & Amaarae)",
+    artist: "Childish Gambino",
+    description: "",
+    link: "https://open.spotify.com/embed/track/11bJ1ws3dathgY9uzADUhL?utm_source=generator",
+  },
+  {
+    title: "Run Your Mouth",
+    artist: "The Marias",
+    description: "",
+    link: "https://open.spotify.com/embed/track/19fKJrO9XdOf6Xla2QHecO?utm_source=generator",
+  },
+  {
+    title: "Official",
+    artist: "Natalie Red",
+    description: "",
+    link: "https://open.spotify.com/embed/track/01Z1wTgPpfSb01GE1I5jy4?utm_source=generator",
+  },
+  {
+    title: "Flutter",
+    artist: "Otrapic",
+    description: "",
+    link: "https://open.spotify.com/embed/track/7vYyDasfVor6TpYtOOP5RJ?utm_source=generator",
+  },
+  //   {
+  //     title: "",
+  //     artist: "",
+  //     description: "",
+  //     link: "",
+  //   },
+];
+const activeSong = spotifyLinks[differenceInDays];
+---
+
+{
+  activeSong ? (
+    <div class="flex flex-col items-center gap-2">
+      <iframe
+        id="spotify-iframe"
+        style="border-radius:12px"
+        class="bigzoom"
+        src={activeSong.link}
+        width="600"
+        height="352"
+        allowfullscreen=""
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy"
+      />
+      <br />
+      <p class="font-bold text-3xl smallzoom">{activeSong.title}</p>
+      <p class="font-bold text-2xl smallzoom">By {activeSong.artist}</p>
+      <p class="text-l font-medium smallzoom">{activeSong.description}</p>
+    </div>
+  ) : (
+    <p class="text-xl font-semibold">
+      Tell Owen he forgot to add a new song :(
+    </p>
+  )
+}
+
+<script>
+  const iframe = document.getElementById("spotify-iframe") as HTMLIFrameElement;
+
+  function updateIframeWidth() {
+    if (iframe) {
+      if (window.innerWidth <= 650) {
+        iframe.width = "300";
+      } else {
+        iframe.width = "600";
+      }
+    }
+  }
+
+  // Initial update
+  updateIframeWidth();
+
+  // Add event listener for resizing
+  window.addEventListener("resize", updateIframeWidth);
+</script>
+
+<style>
+  .bigzoom {
+    transition:
+      transform 0.2s,
+      box-shadow 0.3s;
+  }
+  .bigzoom:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 10px rgb(255, 255, 255);
+  }
+  .smallzoom {
+    transition: transform 0.2s;
+    color: black;
+    background-clip: text;
+  }
+  .smallzoom:hover {
+    transform: scale(1.2);
+    background-image: linear-gradient(
+      0.15turn,
+      rgb(87, 50, 135),
+      rgb(50, 57, 135)
+    );
+    color: transparent;
+  }
+
+  @media only screen and (max-width: 500px) {
+  }
+</style>
