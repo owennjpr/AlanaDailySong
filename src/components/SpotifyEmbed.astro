@@ -158,51 +158,42 @@ const spotifyLinks: SpotifyLink[] = [
   //     link: "",
   //   },
 ];
-
-let activeSong: SpotifyLink | null = null;
-
-const startDate = new Date("2024-12-23");
-const currDate = new Date();
-currDate.setHours(0, 0, 0, 0);
-
-const differenceInTime = currDate.getTime() - startDate.getTime();
-const differenceInDays = Math.floor(differenceInTime / (1000 * 60 * 60 * 24));
-
-activeSong = spotifyLinks[differenceInDays % spotifyLinks.length];
 ---
 
-<div id="song-container" class="flex flex-col items-center gap-2">
-  {
-    activeSong ? (
-      <>
-        <iframe
-          id="spotify-iframe"
-          style="border-radius:12px"
-          class="bigzoom"
-          src={activeSong.link}
-          width="600"
-          height="352"
-          allowfullscreen=""
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          loading="lazy"
-        />
-        <br />
-        <p class="font-bold text-center text-2xl sm:text-3xl max-w-60 sm:max-w-full smallzoom">
-          {activeSong.title}
-        </p>
-        <p class="font-bold text-center text-xl sm:text-2xl max-w-60 sm:max-w-full smallzoom">
-          By {activeSong.artist}
-        </p>
-        <p class="text-sm sm:text-lg text-center font-medium max-w-72 sm:max-w-2xl smallzoom">
-          {activeSong.description}
-        </p>
-      </>
-    ) : (
-      <p class="text-xl text-center font-semibold max-w-60 sm:max-w-full smallzoom">
-        Tell Owen he forgot to add a new song :(
-      </p>
-    )
+<style>
+  :global(.bigzoom) {
+    transition:
+      transform 0.2s,
+      box-shadow 0.3s;
   }
+  :global(.bigzoom:hover) {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 10px rgb(255, 255, 255);
+  }
+  :global(.smallzoom) {
+    transition: transform 0.2s;
+    color: black;
+    background-clip: text;
+  }
+  :global(.smallzoom:hover) {
+    transform: scale(1.2);
+    background-image: linear-gradient(
+      0.15turn,
+      rgb(87, 50, 135),
+      rgb(50, 57, 135)
+    );
+    color: transparent;
+  }
+</style>
+
+<div id="song-container" class="flex flex-col items-center gap-2">
+  <div id="song-content">
+    <p
+      class="text-xl text-center font-semibold max-w-60 sm:max-w-full smallzoom"
+    >
+      Loading song...
+    </p>
+  </div>
 </div>
 
 <script lang="ts">
@@ -360,69 +351,49 @@ activeSong = spotifyLinks[differenceInDays % spotifyLinks.length];
   ];
 
   const startDate = new Date("2024-12-23");
-  const currDate = new Date();
-  currDate.setHours(0, 0, 0, 0);
 
-  const differenceInTime = currDate.getTime() - startDate.getTime();
-  const differenceInDays = Math.floor(differenceInTime / (1000 * 60 * 60 * 24));
+  document.addEventListener("DOMContentLoaded", () => {
+    const currDate = new Date();
+    currDate.setHours(0, 0, 0, 0);
 
-  const activeSong = spotifyLinks[differenceInDays % spotifyLinks.length];
-
-  const songContainer = document.getElementById("song-container");
-
-  // Dynamically update the DOM with the active song
-  if (activeSong && songContainer) {
-    songContainer.innerHTML = `
-      <iframe
-        id="spotify-iframe"
-        style="border-radius:12px"
-        class="bigzoom"
-        src="${activeSong.link}"
-        width="600"
-        height="352"
-        allowfullscreen=""
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-        loading="lazy"
-      ></iframe>
-      <br />
-      <p class="font-bold text-center text-2xl sm:text-3xl max-w-60 sm:max-w-full smallzoom">
-        ${activeSong.title}
-      </p>
-      <p class="font-bold text-center text-xl sm:text-2xl max-w-60 sm:max-w-full smallzoom">
-        By ${activeSong.artist}
-      </p>
-      <p class="text-sm sm:text-lg text-center font-medium max-w-72 sm:max-w-2xl smallzoom">
-        ${activeSong.description}
-      </p>
-    `;
-  }
-</script>
-
-<style>
-  .bigzoom {
-    transition:
-      transform 0.2s,
-      box-shadow 0.3s;
-  }
-  .bigzoom:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 0px 10px rgb(255, 255, 255);
-  }
-  .smallzoom {
-    transition: transform 0.2s;
-    color: black;
-    background-clip: text;
-  }
-  .smallzoom:hover {
-    transform: scale(1.2);
-    background-image: linear-gradient(
-      0.15turn,
-      rgb(87, 50, 135),
-      rgb(50, 57, 135)
+    const differenceInTime = currDate.getTime() - startDate.getTime();
+    const differenceInDays = Math.floor(
+      differenceInTime / (1000 * 60 * 60 * 24)
     );
-    color: transparent;
-  }
 
-  @media only screen and (max-width: 500px) {
-  }
-</style>
+    const activeSong = spotifyLinks[differenceInDays % spotifyLinks.length];
+
+    const songContainer = document.getElementById("song-content");
+    if (activeSong && songContainer) {
+      songContainer.innerHTML = `
+        <iframe
+          id="spotify-iframe"
+          style="border-radius:12px"
+          class="bigzoom"
+          src="${activeSong.link}"
+          width="600"
+          height="352"
+          allowfullscreen=""
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"
+        ></iframe>
+        <br />
+        <p class="font-bold text-center text-2xl sm:text-3xl max-w-60 sm:max-w-full smallzoom">
+          ${activeSong.title}
+        </p>
+        <p class="font-bold text-center text-xl sm:text-2xl max-w-60 sm:max-w-full smallzoom">
+          By ${activeSong.artist}
+        </p>
+        <p class="text-sm sm:text-lg text-center font-medium max-w-72 sm:max-w-2xl smallzoom">
+          ${activeSong.description || ""}
+        </p>
+      `;
+    } else if (songContainer) {
+      songContainer.innerHTML = `
+        <p class="text-xl text-center font-semibold max-w-60 sm:max-w-full smallzoom">
+          Tell Owen he forgot to add a new song :(
+        </p>
+      `;
+    }
+  });
+</script>
